@@ -1,7 +1,9 @@
 use List::MoreUtils qw(uniq);
 use List::Util qw(min max sum);
 $genefile=$ARGV[0];
-mkdir("./GS");
+$outdir=$ARGV[1];
+
+mkdir("./$outdir/GS");
 open FILE,$genefile;
 %hashcellgeneTosig=();
 while(<FILE>){
@@ -12,8 +14,8 @@ $hashcellgeneTosig{$temp[0]}=$temp[1];
 }
 }
 close FILE;
-open PAIR,"./Temp/pair/Pairs.bed";
-open CELLGS,">./GS/GS.bed";
+open PAIR,"./$outdir/Temp/pair/Pairs.bed";
+open CELLGS,">./$outdir/GS/GS.bed";
 @pairs=();
 while(<PAIR>){
 chomp($_);

@@ -1,9 +1,11 @@
 use List::MoreUtils qw(uniq);
 use List::Util qw(min max sum);
-mkdir("./DIS");
-open PAIR,"./Temp/pair/Pairs.bed";
-open PAIRSTA,">./Temp/pair/PairsStandard.bed";
-open CELLDIS,">./DIS/DIS.bed";
+$outdir=$ARGV[0];
+
+mkdir("./$outdir/DIS");
+open PAIR,"./$outdir/Temp/pair/Pairs.bed";
+open PAIRSTA,">./$outdir/Temp/pair/PairsStandard.bed";
+open CELLDIS,">./$outdir/DIS/DIS.bed";
 @pairs=();
 while(<PAIR>){
 chomp($_);

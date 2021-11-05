@@ -1,4 +1,6 @@
-open AA,"./Temp/pair/PairsStandard.bed";
+$outdir=$ARGV[0];
+
+open AA,"./$outdir/Temp/pair/PairsStandard.bed";
 %hashpair=();
 @allpairs=();
 while(<AA>){
@@ -10,7 +12,7 @@ push @allpairs,$_;
 }
 close AA;
 
-open EGC,"./EGC/EGC.bed";
+open EGC,"./$outdir/EGC/EGC.bed";
 while(<EGC>){
 chomp($_);
 @temp=split/\t/,$_;
@@ -22,7 +24,7 @@ $hashpair{$temp[0]}.="\t"."0";
 }
 close EGC;
 
-open GS,"./GS/GS.bed";
+open GS,"./$outdir/GS/GS.bed";
 while(<GS>){
 chomp($_);
 @temp=split/\t/,$_;
@@ -34,7 +36,7 @@ $hashpair{$temp[0]}.="\t"."0";
 }
 close GS;
 
-open DIS,"./DIS/DIS.bed";
+open DIS,"./$outdir/DIS/DIS.bed";
 while(<DIS>){
 chomp($_);
 @temp=split/\t/,$_;
@@ -46,7 +48,7 @@ $hashpair{$temp[0]}.="\t"."0";
 }
 close DIS;
 
-open EWS,"./EWS/EWS.bed";
+open EWS,"./$outdir/EWS/EWS.bed";
 while(<EWS>){
 chomp($_);
 @temp=split/\t/,$_;
@@ -58,7 +60,7 @@ $hashpair{$temp[0]}.="\t"."0";
 }
 close EWS;
 
-open GWS,"./GWS/GWS.bed";
+open GWS,"./$outdir/GWS/GWS.bed";
 while(<GWS>){
 chomp($_);
 @temp=split/\t/,$_;
@@ -70,7 +72,7 @@ $hashpair{$temp[0]}.="\t"."0";
 }
 close GWS;
 
-open WEEC,"./WEEC/WEEC.bed";
+open WEEC,"./$outdir/WEEC/WEEC.bed";
 while(<WEEC>){
 chomp($_);
 @temp=split/\t/,$_;
@@ -82,12 +84,12 @@ $hashpair{$temp[0]}.="\t"."0";
 }
 close WEEC;
 
-mkdir("./Temp/res");
-open ALL,">./Temp/res/pairres.bed";
+mkdir("./$outdir/Temp/res");
+open ALL,">./$outdir/Temp/res/pairres.bed";
 foreach $pair (@allpairs){
 print ALL $pair."\t".$hashpair{$pair}."\n";
 }
 close ALL;
-unlink("./cellEnhGeneWindowpre.bed");
-unlink("./cellEnhGeneWindow.bed");
-unlink("./cellEnhGeneWindowInEnh.bed");
+unlink("./$outdir/cellEnhGeneWindowpre.bed");
+unlink("./$outdir/cellEnhGeneWindow.bed");
+unlink("./$outdir/cellEnhGeneWindowInEnh.bed");
